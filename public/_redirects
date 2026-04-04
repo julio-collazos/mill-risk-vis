@@ -1,0 +1,3 @@
+/terrascope-wms    https://services.terrascope.be/wms/v2    200
+/terrascope-wms/*  https://services.terrascope.be/wms/v2/:splat  200
+/gfw-tiles/*       https://tiles.globalforestwatch.org/:splat     200

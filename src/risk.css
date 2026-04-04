@@ -1,0 +1,316 @@
+/* ─────────────────────────────────────────────────────────────────────────────
+   risk.css  —  VisQuill DataLens styles for Supplier-Risk
+   All classes use the "sr-" prefix (set via VisQuill.create(el, "sr-")).
+   ───────────────────────────────────────────────────────────────────────────── */
+
+/* ── Font imports (Google Fonts via @import) ─────────────────────────────── */
+
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:ital,wght@0,400;0,600;0,700;1,400&family=DM+Mono:wght@400;500&display=swap');
+
+/* ── Glass pane ──────────────────────────────────────────────────────────── */
+
+.sr-glass-pane {
+    fill: rgba(10, 20, 30, 0.55);
+}
+
+/* ── Shared text defaults ────────────────────────────────────────────────── */
+
+.sr-home-label,
+.sr-caption,
+.sr-subcaption,
+.sr-instruction,
+.sr-slider-label,
+.sr-treeloss-aspect-label,
+.sr-water-aspect-label,
+.sr-fire-aspect-label,
+.sr-protected-aspect-label,
+.sr-carbon-aspect-label {
+    font-family: "DM Sans", "Inter", sans-serif;
+    pointer-events: none;
+    user-select: none;
+    fill: #f0f4f8;
+}
+
+.sr-treeloss-bar-caption,
+.sr-water-bar-caption,
+.sr-fire-bar-caption,
+.sr-protected-bar-caption,
+.sr-carbon-bar-caption,
+.sr-treeloss-value-label,
+.sr-water-value-label,
+.sr-fire-value-label,
+.sr-protected-value-label,
+.sr-carbon-value-label,
+.sr-treeloss-grid-label,
+.sr-water-grid-label,
+.sr-fire-grid-label,
+.sr-protected-grid-label,
+.sr-carbon-grid-label {
+    font-family: "DM Mono", "Fira Code", monospace;
+    pointer-events: none;
+    user-select: none;
+}
+
+/* ── Individual text sizes ───────────────────────────────────────────────── */
+
+.sr-home-label {
+    font-size: 11px;
+    font-weight: 700;
+    text-anchor: start;
+    dominant-baseline: hanging;
+    fill: #e2e8f0;
+}
+
+.sr-caption {
+    font-size: 24px;
+    font-weight: 700;
+    text-anchor: start;
+    dominant-baseline: hanging;
+    fill: #f8fafc;
+}
+
+.sr-subcaption {
+    font-size: 14px;
+    font-weight: 400;
+    font-style: italic;
+    text-anchor: start;
+    dominant-baseline: hanging;
+    fill: #cbd5e1;
+}
+
+.sr-instruction {
+    font-size: 12px;
+    font-weight: 400;
+    font-style: italic;
+    text-anchor: start;
+    dominant-baseline: hanging;
+    fill: #94a3b8;
+}
+
+.sr-one-time-instruction {
+    font-family: "DM Sans", sans-serif;
+    font-size: 16px;
+    font-weight: 600;
+    font-style: italic;
+    text-anchor: middle;
+    dominant-baseline: hanging;
+    fill: rgba(148, 163, 184, 0.9);
+    pointer-events: none;
+    user-select: none;
+}
+
+.sr-slider-label {
+    font-size: 14px;
+    font-weight: 600;
+    text-anchor: start;
+    dominant-baseline: text-bottom;
+}
+
+.sr-treeloss-aspect-label,
+.sr-water-aspect-label,
+.sr-fire-aspect-label,
+.sr-protected-aspect-label,
+.sr-carbon-aspect-label {
+    font-size: 14px;
+    font-weight: 700;
+    text-anchor: middle;
+    dominant-baseline: middle;
+}
+
+.sr-treeloss-bar-caption,
+.sr-water-bar-caption,
+.sr-fire-bar-caption,
+.sr-protected-bar-caption,
+.sr-carbon-bar-caption {
+    fill: rgba(255, 255, 255, 0.92);
+    font-size: 9px;
+    font-weight: 500;
+    text-anchor: middle;
+    dominant-baseline: central;
+}
+
+.sr-treeloss-value-label,
+.sr-water-value-label,
+.sr-fire-value-label,
+.sr-protected-value-label,
+.sr-carbon-value-label {
+    fill: #f8fafc;
+    font-size: 9px;
+    font-weight: 500;
+    text-anchor: middle;
+    dominant-baseline: central;
+}
+
+.sr-treeloss-grid-label,
+.sr-water-grid-label,
+.sr-fire-grid-label,
+.sr-protected-grid-label,
+.sr-carbon-grid-label {
+    fill: rgba(240, 244, 248, 0.70);
+    font-size: 10px;
+    font-weight: 400;
+    text-anchor: middle;
+    dominant-baseline: central;
+}
+
+/* ── Handle ──────────────────────────────────────────────────────────────── */
+
+.sr-handle {
+    r: 100px;
+    fill: rgba(138, 43, 226, 0.0);
+    pointer-events: all;
+}
+
+/* ── Analysis mode: lenses locked to mill position ──────────────────────── */
+
+.sr-analysis-mode .sr-handle {
+    pointer-events: none;
+    cursor: default;
+}
+
+.sr-analysis-mode .sr-treeloss-home,
+.sr-analysis-mode .sr-water-home,
+.sr-analysis-mode .sr-protected-home,
+.sr-analysis-mode .sr-peat-home {
+    pointer-events: none;
+    cursor: default;
+}
+
+/* ── Slider ──────────────────────────────────────────────────────────────── */
+
+.sr-slider-handle {
+    r: 12px;
+    fill: #f8fafc;
+    stroke: #475569;
+    stroke-width: 1.5px;
+    pointer-events: all;
+    cursor: grab;
+}
+
+.sr-slider-track {
+    stroke-width: 4px;
+    stroke: rgba(248, 250, 252, 0.6);
+}
+
+/* ── Rims ────────────────────────────────────────────────────────────────── */
+
+.sr-treeloss-rim,
+.sr-water-rim,
+.sr-fire-rim,
+.sr-protected-rim,
+.sr-carbon-rim {
+    fill: none;
+    stroke: rgba(255, 255, 255, 0.0);
+    stroke-width: 12px;
+}
+
+/* ── Homes ─────────────────────────────────────────────────────────────── */
+
+/* 🌳 Deforestation — ember red */
+.sr-treeloss-home {
+    stroke: #f97316;
+    fill: rgba(249, 115, 22, 0.15);
+    stroke-width: 1.5px;
+    pointer-events: all;
+    cursor: pointer;
+    rx: 14px;
+}
+
+/* 💧 Water Stress — ocean blue */
+.sr-water-home {
+    stroke: #1a7abf;
+    fill: rgba(26, 122, 191, 0.18);
+    stroke-width: 1.5px;
+    pointer-events: all;
+    cursor: pointer;
+    rx: 14px;
+}
+
+/* 🔥 Fire Risk — ember red */
+.sr-fire-home {
+    stroke: #d94f2b;
+    fill: rgba(217, 79, 43, 0.18);
+    stroke-width: 1.5px;
+    pointer-events: all;
+    cursor: pointer;
+    rx: 14px;
+}
+
+/* 🌿 Protected Areas — olive */
+.sr-protected-home {
+    stroke: #5a8c5a;
+    fill: rgba(90, 140, 90, 0.18);
+    stroke-width: 1.5px;
+    pointer-events: all;
+    cursor: pointer;
+    rx: 14px;
+}
+
+/* 🏭 Carbon Stock — slate purple */
+.sr-carbon-home {
+    stroke: #7b6fb5;
+    fill: rgba(123, 111, 181, 0.18);
+    stroke-width: 1.5px;
+    pointer-events: all;
+    cursor: pointer;
+    rx: 14px;
+}
+
+/* ── Home icons ──────────────────────────────────────────────────────────── */
+
+.sr-home-icon {
+    fill: none;
+    stroke-width: 1.8px;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+}
+
+.sr-treeloss-home-icon  { stroke: #f97316; }
+.sr-water-home-icon     { stroke: #1a7abf; }
+.sr-fire-home-icon      { stroke: #d94f2b; }
+.sr-protected-home-icon { stroke: #5a8c5a; }
+.sr-carbon-home-icon    { stroke: #7b6fb5; }
+.sr-peat-home-icon      { stroke: #9c7c5a; }
+
+/* ── Baselines ───────────────────────────────────────────────────────────── */
+
+.sr-treeloss-baseline  { fill: none; stroke: #f97316; stroke-width: 12px; stroke-linecap: round; }
+.sr-water-baseline     { fill: none; stroke: #1a7abf; stroke-width: 12px; stroke-linecap: round; }
+.sr-fire-baseline      { fill: none; stroke: #d94f2b; stroke-width: 12px; stroke-linecap: round; }
+.sr-protected-baseline { fill: none; stroke: #5a8c5a; stroke-width: 12px; stroke-linecap: round; }
+.sr-carbon-baseline    { fill: none; stroke: #7b6fb5; stroke-width: 12px; stroke-linecap: round; }
+
+/* ── Year bars ─────────────────────────────────────────────────────────────
+   cat-1 = 2020  cat-2 = 2021  cat-3 = 2022  cat-4 = 2023
+   Each lens uses a 4-step tonal ramp from light → dark.
+   ───────────────────────────────────────────────────────────────────────── */
+
+/* 🌳 Deforestation — amber → orange → red (escalating alarm, 2021 → 2023) */
+.sr-treeloss-cat-1 { fill: #fbbf24; }
+.sr-treeloss-cat-2 { fill: #f97316; }
+.sr-treeloss-cat-3 { fill: #dc2626; }
+.sr-treeloss-cat-4 { fill: #7f1d1d; }
+
+/* 💧 Water Stress — blue ramp */
+.sr-water-cat-1 { fill: #a0d4f5; }
+.sr-water-cat-2 { fill: #4ca8e0; }
+.sr-water-cat-3 { fill: #1a7abf; }
+.sr-water-cat-4 { fill: #0d4a75; }
+
+/* 🔥 Fire Risk — red-orange ramp */
+.sr-fire-cat-1 { fill: #fcc9b5; }
+.sr-fire-cat-2 { fill: #f08060; }
+.sr-fire-cat-3 { fill: #d94f2b; }
+.sr-fire-cat-4 { fill: #8b2610; }
+
+/* 🌿 Protected Areas — olive-green ramp */
+.sr-protected-cat-1 { fill: #c5e8c5; }
+.sr-protected-cat-2 { fill: #89c489; }
+.sr-protected-cat-3 { fill: #5a8c5a; }
+.sr-protected-cat-4 { fill: #2c4a2c; }
+
+/* 🏭 Carbon Stock — slate-purple ramp */
+.sr-carbon-cat-1 { fill: #d4cff0; }
+.sr-carbon-cat-2 { fill: #a89dd8; }
+.sr-carbon-cat-3 { fill: #7b6fb5; }
+.sr-carbon-cat-4 { fill: #3f3472; }

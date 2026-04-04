@@ -1,0 +1,35 @@
+{
+  "name": "supplier-risk",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "lint": "eslint .",
+    "preview": "vite preview"
+  },
+  "dependencies": {
+    "@turf/turf": "^7.3.4",
+    "@visquill/visquill-blueprints": "file:./visquill-visquill-blueprints-1.0.0-alpha.1.tgz",
+    "@visquill/visquill-gdk": "^1.0.0-alpha.1",
+    "h3-js": "^4.4.0",
+    "maplibre-gl": "^5.20.2",
+    "pmtiles": "^4.4.0",
+    "react": "^19.2.4",
+    "react-dom": "^19.2.4",
+    "react-map-gl": "^8.1.0"
+  },
+  "devDependencies": {
+    "@eslint/js": "^9.39.4",
+    "@types/react": "^19.2.14",
+    "@types/react-dom": "^19.2.3",
+    "@vitejs/plugin-react": "^6.0.1",
+    "eslint": "^9.39.4",
+    "eslint-plugin-react-hooks": "^7.0.1",
+    "eslint-plugin-react-refresh": "^0.5.2",
+    "globals": "^17.4.0",
+    "typescript": "^5.8.0",
+    "vite": "^8.0.1"
+  }
+}

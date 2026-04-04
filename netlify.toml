@@ -1,0 +1,19 @@
+[[redirects]]
+  from   = "/terrascope-wms"
+  to     = "https://services.terrascope.be/wms/v2"
+  status = 200
+  force  = true
+
+[[redirects]]
+  from   = "/terrascope-wms/*"
+  to     = "https://services.terrascope.be/wms/v2/:splat"
+  status = 200
+
+[[redirects]]
+  from   = "/gfw-tiles/*"
+  to     = "https://tiles.globalforestwatch.org/:splat"
+  status = 200
+
+[build]
+  publish = "dist"
+  command = "npm run build"

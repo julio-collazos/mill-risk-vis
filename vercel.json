@@ -1,0 +1,16 @@
+{
+  "rewrites": [
+    {
+      "source": "/terrascope-wms",
+      "destination": "https://services.terrascope.be/wms/v2"
+    },
+    {
+      "source": "/terrascope-wms/:path*",
+      "destination": "https://services.terrascope.be/wms/v2/:path*"
+    },
+    {
+      "source": "/gfw-tiles/:path*",
+      "destination": "https://tiles.globalforestwatch.org/:path*"
+    }
+  ]
+}
