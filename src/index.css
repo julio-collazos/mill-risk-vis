@@ -1,4 +1,5 @@
 :root {
+  --panel-offset: 20px;
   --text: #6b6375;
   --text-h: #08060d;
   --bg: #fff;
@@ -28,6 +29,10 @@
   @media (max-width: 1024px) {
     font-size: 16px;
   }
+}
+
+@media (max-width: 480px) {
+  :root { --panel-offset: 10px; }
 }
 
 @media (prefers-color-scheme: dark) {

@@ -44,6 +44,13 @@ export default function App() {
   const [hexPopup,   setHexPopup]   = useState<{ longitude: number; latitude: number; properties: Record<string, unknown> } | null>(null);
   const [globalHexGeoJSON, setGlobalHexGeoJSON] = useState<HexFeatureCollection | null>(null);
   const [millsData, setMillsData] = useState<MillsGeoJSON>(millsDataBase);
+  const [windowWidth, setWindowWidth] = useState(window.innerWidth);
+  useEffect(() => {
+    const handler = () => setWindowWidth(window.innerWidth);
+    window.addEventListener('resize', handler);
+    return () => window.removeEventListener('resize', handler);
+  }, []);
+  const isMobile = windowWidth <= 480;
 
   const getMillCoords = (mill: MillFeature): [number, number] => {
     const coords = mill.geometry.coordinates;
@@ -59,9 +66,12 @@ export default function App() {
   const fitToRadius = (lng: number, lat: number, radiusKm: number, duration = 800) => {
     const circle = turf.circle([lng, lat], radiusKm, { steps: 64, units: 'kilometers' });
     const bbox = turf.bbox(circle);
+    const mapPadding = isMobile
+      ? { top: 60, bottom: Math.round(window.innerHeight * 0.65) + 20, left: 20, right: 20 }
+      : 60;
     mapRef.current?.fitBounds(
       [[bbox[0], bbox[1]], [bbox[2], bbox[3]]],
-      { padding: 60, duration }
+      { padding: mapPadding, duration }
     );
   };
 
@@ -216,7 +226,7 @@ export default function App() {
         <>
           <LayerToggle activeLayers={activeLayers} onToggle={toggleLayer} />
 
-          <div style={{ position: 'absolute', top: 20, left: 20, zIndex: 30, display: 'flex', gap: 0 }}>
+          <div className="mode-toggle-bar">
             <button
               onClick={() => setLensMode('analysis')}
               style={{
@@ -232,20 +242,40 @@ export default function App() {
                 letterSpacing:'0.03em',
               }}
             >Analysis</button>
-            <button
-              onClick={() => setLensMode('exploration')}
-              style={{
-                background:   lensMode === 'exploration' ? '#f59e0b' : 'rgba(15,23,35,0.85)',
-                color:        lensMode === 'exploration' ? '#0a141e' : '#94a3b8',
-                border:       '1px solid #f59e0b',
-                borderRadius: '0 6px 6px 0',
-                padding:      '5px 14px',
-                fontWeight:   600,
-                cursor:       'pointer',
-                fontSize:     '12px',
-                letterSpacing:'0.03em',
-              }}
-            >Exploration</button>
+            {!isMobile && (
+              <button
+                onClick={() => setLensMode('exploration')}
+                style={{
+                  background:   lensMode === 'exploration' ? '#f59e0b' : 'rgba(15,23,35,0.85)',
+                  color:        lensMode === 'exploration' ? '#0a141e' : '#94a3b8',
+                  border:       '1px solid #f59e0b',
+                  borderRadius: '0 6px 6px 0',
+                  padding:      '5px 14px',
+                  fontWeight:   600,
+                  cursor:       'pointer',
+                  fontSize:     '12px',
+                  letterSpacing:'0.03em',
+                }}
+              >Exploration</button>
+            )}
+            {isMobile && (
+              <button
+                style={{
+                  background:   'rgba(15,23,35,0.85)',
+                  color:        '#94a3b8',
+                  border:       '1px solid #f59e0b',
+                  borderRadius: '0 6px 6px 0',
+                  padding:      '5px 14px',
+                  fontWeight:   600,
+                  cursor:       'default',
+                  fontSize:     '12px',
+                  letterSpacing:'0.03em',
+                  opacity:      0.4,
+                }}
+                disabled
+                title="Exploration mode not available on small screens"
+              >Exploration</button>
+            )}
           </div>
 
           <MillInfoPanel
@@ -357,7 +387,7 @@ export default function App() {
               <Popup
                 longitude={paPopup.longitude}
                 latitude={paPopup.latitude}
-                anchor="bottom"
+                anchor={isMobile ? 'top' : 'bottom'}
                 onClose={() => setPaPopup(null)}
                 closeButton={true}
                 closeOnClick={false}
@@ -389,7 +419,7 @@ export default function App() {
               <Popup
                 longitude={basinPopup.longitude}
                 latitude={basinPopup.latitude}
-                anchor="bottom"
+                anchor={isMobile ? 'top' : 'bottom'}
                 onClose={() => setBasinPopup(null)}
                 closeButton={true}
                 closeOnClick={false}
@@ -445,7 +475,7 @@ export default function App() {
           <Popup
             longitude={hexPopup.longitude}
             latitude={hexPopup.latitude}
-            anchor="bottom"
+            anchor={isMobile ? 'top' : 'bottom'}
             onClose={() => setHexPopup(null)}
             closeButton={true}
             closeOnClick={false}

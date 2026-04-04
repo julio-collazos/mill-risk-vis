@@ -89,13 +89,14 @@
 
 .ranking-grid-header {
   display: grid;
-  grid-template-columns: 25px 1fr 35px 35px 35px 35px;
-  gap: 8px;
-  padding: 0 12px 8px 12px;
-  font-size: 10px;
-  font-weight: 600;
-  color: #94a3b8;
+  grid-template-columns: 20px 1fr 90px 26px 26px 26px 26px 26px 36px;
+  gap: 6px;
+  padding: 0 8px 8px;
+  font-size: 9px;
+  font-weight: 700;
+  color: #475569;
   text-transform: uppercase;
+  letter-spacing: 0.06em;
   flex-shrink: 0;
 }
 
@@ -110,10 +111,10 @@
 
 .ranking-row {
   display: grid;
-  grid-template-columns: 25px 1fr 35px 35px 35px 35px;
-  gap: 8px;
+  grid-template-columns: 20px 1fr 90px 26px 26px 26px 26px 26px 36px;
+  gap: 6px;
   align-items: center;
-  padding: 8px 12px;
+  padding: 7px 8px;
   background-color: rgba(255, 255, 255, 0.03);
   border-radius: 6px;
   cursor: pointer;
@@ -361,3 +362,137 @@
 
 .rspo-pill--certified    { background: rgba(34,197,94,0.15);  color: #22c55e; }
 .rspo-pill--uncertified  { background: rgba(100,116,139,0.15); color: #64748b; }
+
+/* ── MillInfoPanel dimensions (extracted from inline style) ────────────────── */
+
+.mill-info-panel--dimensions {
+  width: 320px;
+  max-height: calc(100vh - 50px);
+  overflow-y: auto;
+}
+
+/* ── Mode toggle bar ───────────────────────────────────────────────────────── */
+
+.mode-toggle-bar {
+  position: absolute;
+  top: 20px;
+  left: 20px;
+  z-index: 30;
+  display: flex;
+  gap: 0;
+}
+
+/* ── LayerToggle collapse button (hidden on desktop) ───────────────────────── */
+
+.layer-toggle-btn { display: none; }
+
+/* ─────────────────────────────────────────────────────────────────────────────
+   Responsive overrides — tablet (≤768px)
+   ───────────────────────────────────────────────────────────────────────────── */
+
+@media (max-width: 768px) {
+  /* MillInfoPanel: shrink width on tablet */
+  .mill-info-panel--dimensions {
+    width: min(320px, 45vw);
+  }
+
+  /* RiskRanking: hide PEAT + WET columns */
+  .ranking-col--peat,
+  .ranking-col--wet { display: none; }
+
+  .ranking-row,
+  .ranking-grid-header {
+    grid-template-columns: 20px 1fr 90px 26px 26px 26px 36px;
+  }
+
+  /* Touch targets */
+  .ranking-row  { min-height: 44px; }
+  .radius-btn   { min-height: 44px; padding: 10px 0; }
+  .layer-label  { min-height: 44px; align-items: center; }
+  .layer-checkbox { width: 18px; height: 18px; margin-right: 10px; }
+  .panel-close-btn {
+    min-width: 44px;
+    min-height: 44px;
+    font-size: 24px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+}
+
+/* ─────────────────────────────────────────────────────────────────────────────
+   Responsive overrides — phone (≤480px)
+   ───────────────────────────────────────────────────────────────────────────── */
+
+@media (max-width: 480px) {
+  /* MillInfoPanel → full-width bottom sheet */
+  .glass-panel--top-right {
+    top: auto;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    width: 100% !important;
+    max-width: 100%;
+    max-height: 65vh;
+    border-radius: 12px 12px 0 0;
+    overflow-y: auto;
+  }
+
+  .mill-info-panel--dimensions {
+    width: 100%;
+    max-height: 65vh;
+  }
+
+  .score-label { width: 90px; }
+
+  /* Legend hidden (sits under the bottom sheet) */
+  .glass-panel--bottom-left { display: none; }
+
+  /* RiskRanking → full-width bottom bar */
+  .glass-panel--bottom-right {
+    bottom: var(--panel-offset);
+    right: var(--panel-offset);
+    left: var(--panel-offset);
+    width: auto !important;
+  }
+
+  /* RiskRanking: keep only rank | mill | tier | score */
+  .ranking-col--tcl,
+  .ranking-col--wat,
+  .ranking-col--pa,
+  .ranking-col--peat,
+  .ranking-col--wet { display: none; }
+
+  .ranking-row,
+  .ranking-grid-header {
+    grid-template-columns: 20px 1fr 90px 36px;
+  }
+
+  .ranking-panel { width: auto; max-height: 45vh; }
+  .ranking-footer { display: none; }
+
+  /* Mode toggle bar: centered at top */
+  .mode-toggle-bar {
+    top: 10px;
+    left: 50%;
+    transform: translateX(-50%);
+    white-space: nowrap;
+  }
+
+  /* LayerToggle collapse button: visible on phone */
+  .layer-toggle-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 36px;
+    height: 36px;
+    background: none;
+    border: none;
+    color: #94a3b8;
+    font-size: 20px;
+    cursor: pointer;
+  }
+
+  .layer-toggle-panel--collapsed .layer-item,
+  .layer-toggle-panel--collapsed .panel-title { display: none; }
+}

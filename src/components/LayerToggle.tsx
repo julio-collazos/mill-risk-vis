@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import type { ActiveLayers } from '../types.ts';
 
 const LAYER_LABELS: Record<keyof ActiveLayers, string> = {
@@ -17,8 +18,10 @@ interface LayerToggleProps {
 }
 
 export default function LayerToggle({ activeLayers, onToggle }: LayerToggleProps) {
+  const [collapsed, setCollapsed] = useState(false);
   return (
-    <div className="glass-panel glass-panel--pad-md glass-panel--top-left-70">
+    <div className={`glass-panel glass-panel--pad-md glass-panel--top-left-70 layer-toggle-panel${collapsed ? ' layer-toggle-panel--collapsed' : ''}`}>
+      <button className="layer-toggle-btn" onClick={() => setCollapsed(c => !c)} aria-label="Toggle layers">☰</button>
       <h3 className="panel-title">Map Layers</h3>
       {(Object.keys(activeLayers) as (keyof ActiveLayers)[]).filter(key => !HIDDEN_LAYERS.includes(key)).map((key) => (
         <div key={key} className="layer-item">

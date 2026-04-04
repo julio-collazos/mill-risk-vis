@@ -12,8 +12,6 @@ interface RiskRankingProps {
 const RADII = [30, 50, 100] as const;
 type RankingRadius = 30 | 50 | 100;
 
-// Grid layout: rank | mill id + rspo | tier | TCL | WAT | PA | PEAT | WET | Total
-const GRID = '20px 1fr 90px 26px 26px 26px 26px 26px 36px';
 
 function ScoreCell({ score }: { score: number }) {
   const color =
@@ -77,20 +75,15 @@ export default function RiskRanking({
       </div>
 
       {/* Column labels */}
-      <div style={{
-        display: 'grid', gridTemplateColumns: GRID,
-        gap: '6px', padding: '0 8px 8px',
-        fontSize: '9px', fontWeight: 700, color: '#475569',
-        textTransform: 'uppercase', letterSpacing: '0.06em', flexShrink: 0,
-      }}>
+      <div className="ranking-grid-header">
         <div>#</div>
         <div>Mill</div>
         <div>Tier</div>
-        <div style={{ textAlign: 'center' }}>TCL</div>
-        <div style={{ textAlign: 'center' }}>WAT</div>
-        <div style={{ textAlign: 'center' }}>PA</div>
-        <div style={{ textAlign: 'center' }}>PEAT</div>
-        <div style={{ textAlign: 'center' }}>WET</div>
+        <div className="ranking-col--tcl" style={{ textAlign: 'center' }}>TCL</div>
+        <div className="ranking-col--wat" style={{ textAlign: 'center' }}>WAT</div>
+        <div className="ranking-col--pa"  style={{ textAlign: 'center' }}>PA</div>
+        <div className="ranking-col--peat" style={{ textAlign: 'center' }}>PEAT</div>
+        <div className="ranking-col--wet"  style={{ textAlign: 'center' }}>WET</div>
         <div style={{ textAlign: 'center' }}>Score</div>
       </div>
 
@@ -106,7 +99,6 @@ export default function RiskRanking({
             <div
               key={p.uml_id || idx}
               className={`ranking-row${isActive ? ' ranking-row--active' : ''}`}
-              style={{ display: 'grid', gridTemplateColumns: GRID, gap: '6px', padding: '7px 8px' }}
               onClick={() => onMillClick(feature)}
               onMouseEnter={() => onMillHover(p.uml_id)}
               onMouseLeave={() => onMillHover(null)}
@@ -144,11 +136,11 @@ export default function RiskRanking({
               </div>
 
               <TierBadge tier={riskTier} />
-              <ScoreCell score={scores.treeCoverLoss} />
-              <ScoreCell score={scores.waterStress} />
-              <ScoreCell score={scores.protectedArea} />
-              <ScoreCell score={scores.peatSoil} />
-              <ScoreCell score={scores.wetlandRisk} />
+              <div className="ranking-col--tcl"><ScoreCell score={scores.treeCoverLoss} /></div>
+              <div className="ranking-col--wat"><ScoreCell score={scores.waterStress} /></div>
+              <div className="ranking-col--pa"><ScoreCell score={scores.protectedArea} /></div>
+              <div className="ranking-col--peat"><ScoreCell score={scores.peatSoil} /></div>
+              <div className="ranking-col--wet"><ScoreCell score={scores.wetlandRisk} /></div>
               <div style={{ textAlign: 'center', fontSize: '11px', fontWeight: 800, color: '#f8fafc' }}>
                 {total}
               </div>
@@ -158,7 +150,7 @@ export default function RiskRanking({
       </div>
 
       {/* Footer legend */}
-      <div style={{
+      <div className="ranking-footer" style={{
         marginTop: '8px', paddingTop: '8px',
         borderTop: '1px solid rgba(255,255,255,0.06)',
         display: 'flex', gap: '12px', flexShrink: 0,

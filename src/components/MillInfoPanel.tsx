@@ -114,7 +114,7 @@ export default function MillInfoPanel({ mill, onClose, activeRadius, onRadiusSel
   const RADII = [30, 50, 100] as const;
 
   return (
-    <div className="glass-panel glass-panel--pad-lg glass-panel--top-right" style={{ width: '320px', maxHeight: 'calc(100vh - 50px)', overflowY: 'auto' }}>
+    <div className="glass-panel glass-panel--pad-lg glass-panel--top-right mill-info-panel--dimensions">
       <button className="panel-close-btn" onClick={onClose} aria-label="Close">×</button>
 
       {/* Header */}
