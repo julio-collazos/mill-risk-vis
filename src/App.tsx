@@ -144,7 +144,7 @@ export default function App() {
   const pmBase = `pmtiles://${window.location.origin}`;
 
   const esaWmsUrl = '/terrascope-wms?service=WMS&request=GetMap&layers=WORLDCOVER_2021_MAP&styles=&format=image/png&transparent=true&version=1.1.1&width=256&height=256&srs=EPSG:3857&bbox={bbox-epsg-3857}';
-  const treeCoverLossTilesUrl = '/gfw-tiles/umd_tree_cover_loss/v1.12/tcd_30/{z}/{x}/{y}.png';
+  const treeCoverLossTilesUrl = '/gfw-tiles/umd_tree_cover_loss/v1.12/dynamic/{z}/{x}/{y}.png?implementation=tcd_30';
 
   const handleMapClick = (evt: MapLayerMouseEvent) => {
     const millFeature  = evt.features?.find(f => f.layer.id === 'mills-layer');
