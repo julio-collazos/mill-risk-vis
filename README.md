@@ -43,16 +43,15 @@ Configured for Netlify (`netlify.toml`) and Vercel (`vercel.json`). Both include
 
 ## Data Sources
 
-| Layer | Source | Link |
-|---|---|---|
-| ESA WorldCover 2021 | Terrascope WMS | |
-| Tree Cover Loss | Global Forest Watch | |
-| Water Risk | WRI Aqueduct | |
-| Protected Areas | WDPA — Protected Planet | |
-| Hydrological Basins | WRI Aqueduct (HydroSHEDS) | |
-| Peat soil extent | CIFOR Global Peatland Map | |
-| Wetland extent | Global Wetlands Database | |
-| Mill locations | RSPO data | 10 representative mills, Central America |
+| Layer | Source |
+|---|---|
+| ESA WorldCover 2021 | [Terrascope WMS](https://docs.terrascope.be/DataProducts/WorldCover/WorldCover.html) |
+| Tree Cover Loss | [Global Forest Watch](https://www.globalforestwatch.org/help/datasets/forest-change/) |
+| Water Risk | [WRI Aqueduct](https://doi.org/10.46830/writn.23.00061) |
+| Protected Areas | [WDPA — Protected Planet](https://www.protectedplanet.net/en/thematic-areas/wdpa?tab=WDPA) |
+| Peat soil extent | [IMCG Global Peatland Database](https://gee-community-catalog.org/projects/peatland/) |
+| Wetland extent | [Global Wetlands Map](https://gee-community-catalog.org/projects/gwl_fcs/) |
+| Mill locations | [RSPO Palm Oil mills](https://data.globalforestwatch.org/datasets/rspo-palm-oil-mills) |
 
 ## Tech Stack
 
@@ -62,4 +61,3 @@ Configured for Netlify (`netlify.toml`) and Vercel (`vercel.json`). Both include
 - H3-js (hexagonal spatial indexing)
 - Turf.js (geometric operations)
 - PMTiles (local vector tiles)
-- Vite 8
