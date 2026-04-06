@@ -1,5 +1,7 @@
 # Supplier Risk Visualizer
 
+<image src="./img_1.png"><image>
+
 > **Mockup / Portfolio Project** — This tool uses sample data for demonstration purposes only. Risk scores, rankings, and tier classifications are illustrative. Every company applies its own methodologies, thresholds, and business priorities when assessing supplier risk — the values shown here should not be used as a basis for real procurement decisions.
 
 An interactive environmental risk screening tool for palm oil mill suppliers, built with React, MapLibre GL, and the VisQuill GDK spatial lens framework.
